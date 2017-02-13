@@ -1,0 +1,85 @@
+html, body, #app {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    margin: 30px;
+    width: 40vw;
+}
+
+* {
+    font-size: 1rem;
+}
+
+.hide {
+    display: none;
+}
+.visible {
+    display: flex;
+}
+
+form {
+    display: flex;
+}
+
+.title {
+    width: 30%;
+    margin: 0;
+    font-size: 23px;
+}
+.text {
+    width: 60%;
+}
+
+
+
+
+.theList {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.listItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.delete {
+    width: 3vw;
+    height: 3vh;
+}
+
+.button {
+    border-radius: 20%;
+    width: auto;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    margin: 15px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: 3vh;
+    background-color: #FF9900;
+}
+
+.checkBox {
+    width: 25px;
+    height: 25px;
+}
