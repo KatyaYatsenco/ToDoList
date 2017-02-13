@@ -4,14 +4,14 @@ export default function Item(props) {
 
 
     return (
-        <li className="{props.visibility} listItem">
+        <li className="listItem">
             <input
                 type="checkbox"
                 className="checkBox"
-                onClick={props.onCheck.bind(null, props)}
+                onClick={props.onCheck.bind(null,props)}
             />
             <div
-                className="task">
+            className="task">
                 {props.name}
             </div>
 

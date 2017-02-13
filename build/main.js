@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 182:
+/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26,69 +26,13 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 
 /***/ }),
 
-/***/ 184:
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-
 /***/ 81:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListItem_index__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DoneItems_index__ = __webpack_require__(82);
@@ -99,8 +43,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -126,8 +68,7 @@ var App = function (_Component) {
         _this.state = {
             count: 0,
             items: [],
-            isChecked: false,
-            visibility: 'visible'
+            isChecked: false
 
         };
         _this.inputDidMount = _this.inputDidMount.bind(_this);
@@ -149,28 +90,26 @@ var App = function (_Component) {
             });
             e.preventDefault();
         }
-    }, {
-        key: 'filterDone',
-        value: function filterDone(_ref) {
-            _objectDestructuringEmpty(_ref);
 
-            var items = this.state.items;
+        // filterDone({}) {
+        //     const items = this.state.items;
+        //
+        //     for (let index = 0, length = items.length; index < length; index++) {
+        //         const item = items[index];
+        //         if (item.isChecked == false) {
+        //             // console.log(this.state.className);
+        //             classNames('hide',item);
+        //             // item = getClassName()
+        //         }
+        //     }
+        //
+        // }
 
-            for (var index = 0, length = items.length; index < length; index++) {
-                var item = items[index];
-                if (item.isChecked == false) {
-                    if (this.state.visibility === 'visible') {
-                        this.setState({ visibility: "hide" });
-                        console.log(item);
-                    }
-                }
-            }
-            // this.setState({items})
-        }
+
     }, {
         key: 'deleteItem',
-        value: function deleteItem(_ref2) {
-            var id = _ref2.id;
+        value: function deleteItem(_ref) {
+            var id = _ref.id;
 
             var items = this.state.items;
 
@@ -185,8 +124,8 @@ var App = function (_Component) {
         }
     }, {
         key: 'handleInputChange',
-        value: function handleInputChange(_ref3) {
-            var id = _ref3.id;
+        value: function handleInputChange(_ref2) {
+            var id = _ref2.id;
 
             var items = this.state.items;
 
@@ -213,12 +152,7 @@ var App = function (_Component) {
             var prevStateItems = this.state.items;
 
             if (value !== '') {
-                var newStateItems = [].concat(_toConsumableArray(prevStateItems), [{
-                    name: value,
-                    id: Date.now(),
-                    isChecked: isChecked,
-                    visibility: 'visible'
-                }]);
+                var newStateItems = [].concat(_toConsumableArray(prevStateItems), [{ name: value, id: Date.now(), isChecked: isChecked }]);
                 this.setState({ items: newStateItems });
             }
 
@@ -263,7 +197,7 @@ var App = function (_Component) {
                     })
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DoneItems_index__["a" /* default */], { filterDone: filterDone }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ListItem_index__["a" /* default */], { deleteItem: deleteItem, items: items, checkItem: handleInputChange, visibility: this.state.visibility })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ListItem_index__["a" /* default */], { deleteItem: deleteItem, items: items, checkItem: handleInputChange })
             );
         }
     }]);
@@ -320,7 +254,7 @@ function Item(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
             {
-                className: "{props.visibility} task" },
+                className: "task" },
             props.name
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -374,13 +308,12 @@ var ListItem = function (_Component) {
             var _props = this.props,
                 items = _props.items,
                 deleteItem = _props.deleteItem,
-                checkItem = _props.checkItem,
-                visibility = _props.visibility;
+                checkItem = _props.checkItem;
 
             var children = [];
             for (var index = 0, length = items.length; index < length; index++) {
                 var item = items[index];
-                children.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Item_index_js__["a" /* default */], _extends({ key: item.id }, item, { visibility: visibility, onDelete: deleteItem, onCheck: checkItem })));
+                children.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Item_index_js__["a" /* default */], _extends({ className: 'visible', key: item.id }, item, { onDelete: deleteItem, onCheck: checkItem })));
             }
 
             return children;
@@ -411,7 +344,63 @@ var ListItem = function (_Component) {
 
 
 
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return classNames;
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+
 /***/ })
 
-},[182]);
+},[183]);
 //# sourceMappingURL=main.js.map

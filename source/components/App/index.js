@@ -15,8 +15,6 @@ export default class App extends Component {
             count: 0,
             items: [],
             isChecked: false,
-            visibility: 'visible'
-
 
         };
         this.inputDidMount = this.inputDidMount.bind(this);
@@ -37,22 +35,19 @@ export default class App extends Component {
 
     }
 
-    filterDone({}) {
-        const items = this.state.items;
-
-
-        for (let index = 0, length = items.length; index < length; index++) {
-            const item = items[index];
-            if (item.isChecked == false) {
-                if(this.state.visibility === 'visible') {
-                    this.setState({visibility: "hide"});
-                    console.log(item);
-                }
-            }
-        }
-        // this.setState({items})
-
-    }
+    // filterDone({}) {
+    //     const items = this.state.items;
+    //
+    //     for (let index = 0, length = items.length; index < length; index++) {
+    //         const item = items[index];
+    //         if (item.isChecked == false) {
+    //             // console.log(this.state.className);
+    //             classNames('hide',item);
+    //             // item = getClassName()
+    //         }
+    //     }
+    //
+    // }
 
 
     deleteItem({id}) {
@@ -94,12 +89,7 @@ export default class App extends Component {
         const prevStateItems = this.state.items;
 
         if (value !== '') {
-            const newStateItems = [...prevStateItems, {
-                name: value,
-                id: Date.now(),
-                isChecked: isChecked,
-                visibility: 'visible'
-            }];
+            const newStateItems = [...prevStateItems, {name: value, id: Date.now(), isChecked: isChecked}];
             this.setState({items: newStateItems});
         }
 
@@ -136,7 +126,7 @@ export default class App extends Component {
 
                 <DoneItems filterDone={filterDone}/>
 
-                <ListItem deleteItem={deleteItem} items={items} checkItem={handleInputChange} visibility={this.state.visibility}/>
+                <ListItem deleteItem={deleteItem} items={items} checkItem={handleInputChange}/>
             </toDoList>
         );
     }

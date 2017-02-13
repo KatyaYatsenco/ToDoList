@@ -11,11 +11,11 @@ export default class ListItem extends Component {
     }
 
     getItems() {
-        const {items, deleteItem, checkItem, visibility} = this.props;
+        const {items, deleteItem, checkItem} = this.props;
         const children = [];
         for (let index = 0, length = items.length; index < length; index++) {
             const item = items[index];
-            children.push(<Item key={item.id} {...item} visibility={visibility} onDelete={deleteItem} onCheck={checkItem}/>)
+            children.push(<Item className="visible" key={item.id} {...item} onDelete={deleteItem} onCheck={checkItem}/>)
         }
 
         return children;
