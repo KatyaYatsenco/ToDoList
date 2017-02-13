@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 import classNames from 'classnames';
 
 import ListItem from '../ListItem/index';
-import DoneItems from  '../DoneItems/index';
-import UnDoneItems from '../UnDoneItems/index';
+// import DoneItems from  '../DoneItems/index';
+// import UnDoneItems from '../UnDoneItems/index';
 
 
 export default class App extends Component {
@@ -21,7 +21,7 @@ export default class App extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.filterDone = this.filterDone.bind(this);
+        // this.filterDone = this.filterDone.bind(this);
 
     }
 
@@ -124,7 +124,7 @@ export default class App extends Component {
                     />
                 </form>
 
-                <DoneItems filterDone={filterDone}/>
+                {/*<DoneItems filterDone={filterDone}/>*/}
 
                 <ListItem deleteItem={deleteItem} items={items} checkItem={handleInputChange}/>
             </toDoList>

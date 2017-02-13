@@ -35,9 +35,6 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListItem_index__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DoneItems_index__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UnDoneItems_index__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UnDoneItems_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__UnDoneItems_index__);
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -54,7 +51,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
+// import DoneItems from  '../DoneItems/index';
+// import UnDoneItems from '../UnDoneItems/index';
 
 
 var App = function (_Component) {
@@ -75,7 +73,7 @@ var App = function (_Component) {
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.deleteItem = _this.deleteItem.bind(_this);
         _this.handleInputChange = _this.handleInputChange.bind(_this);
-        _this.filterDone = _this.filterDone.bind(_this);
+        // this.filterDone = this.filterDone.bind(this);
 
         return _this;
     }
@@ -196,7 +194,6 @@ var App = function (_Component) {
                         onClick: handleSubmit
                     })
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DoneItems_index__["a" /* default */], { filterDone: filterDone }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ListItem_index__["a" /* default */], { deleteItem: deleteItem, items: items, checkItem: handleInputChange })
             );
         }
@@ -206,29 +203,6 @@ var App = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = App;
-
-/***/ }),
-
-/***/ 82:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony export (immutable) */ __webpack_exports__["a"] = DoneItems;
-
-
-function DoneItems(props) {
-
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "button",
-        {
-            className: "doneItems",
-            onClick: props.filterDone.bind(null, props)
-        },
-        "Done"
-    );
-}
 
 /***/ }),
 
@@ -336,13 +310,6 @@ var ListItem = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = ListItem;
-
-/***/ }),
-
-/***/ 85:
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 
