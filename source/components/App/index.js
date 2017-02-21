@@ -110,10 +110,7 @@ export default class App extends Component {
         for (let index = 0, itemsLength = items.length; index < itemsLength; index++) {
             const item = items[index];
             const item2 = fullListItems[index];
-            if (item.id == id) {
-                item.isChecked = !item.isChecked;
-            }
-            if(item2.id == id) {
+            if (item.id == id || item2.id == id) {
                 item.isChecked = !item.isChecked;
             }
         }

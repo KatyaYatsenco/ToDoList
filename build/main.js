@@ -169,10 +169,7 @@ var App = function (_Component) {
             for (var index = 0, itemsLength = items.length; index < itemsLength; index++) {
                 var item = items[index];
                 var item2 = fullListItems[index];
-                if (item.id == id) {
-                    item.isChecked = !item.isChecked;
-                }
-                if (item2.id == id) {
+                if (item.id == id || item2.id == id) {
                     item.isChecked = !item.isChecked;
                 }
             }
@@ -361,7 +358,7 @@ function Item(props) {
             type: "checkbox",
             className: "checkBox",
             onClick: props.onCheck.bind(null, props),
-            onChange: props.isChecked ? "checked" : ""
+            checked: props.isChecked ? "checked" : ""
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",

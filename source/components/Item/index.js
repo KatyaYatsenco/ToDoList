@@ -10,7 +10,7 @@ export default function Item(props) {
                 type="checkbox"
                 className="checkBox"
                 onClick={props.onCheck.bind(null,props)}
-                onChange={props.isChecked ? "checked" : ""}
+                checked={props.isChecked ? "checked" : ""}
             />
             <div
             className="task">
