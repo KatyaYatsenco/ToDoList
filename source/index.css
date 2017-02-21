@@ -1,85 +1,192 @@
-html, body, #app {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: fixed;
-    left: 0;
-    top: 0;
-    box-sizing: border-box;
-}
-
-#app {
-    margin: 30px;
-    width: 40vw;
+body {
+    display: flex;
+    margin: 20px;
 }
 
 * {
-    font-size: 1rem;
-}
-
-.hide {
-    display: none;
-}
-.visible {
-    display: flex;
-}
-
-form {
-    display: flex;
-}
-
-.title {
-    width: 30%;
+    font-size: 22px;
     margin: 0;
-    font-size: 23px;
-}
-.text {
-    width: 60%;
+    padding: 0;
 }
 
+.toDoList {
+    display: flex;
+    flex-direction: column;
+    background-color: #CCCCCC;
+    border-radius: 25px;
+    width: 600px;
+}
 
+.mainForm {
+    display: flex;
+    height: 35px;
+    flex-wrap: wrap;
+    margin: 15px;
+    padding: 0 6px;
+}
 
+.formTitle {
+    display: flex;
+    width: 19%;
+    align-self: center;
+    color: #771100;
+    font-family: fantasy;
+    font-size: 27px;
+
+}
+
+.inputTask {
+    display: flex;
+    width: 66%;
+    border-radius: 25px;
+    border: 2px solid #771100;
+    font-family: fantasy;
+    background-color: #ccc;
+    margin: 0 0 0 20px;
+    text-align: center;
+    color: #771100;
+}
+
+input[type="text"]:focus {
+    border: 2px solid #FF9900;
+    border-radius: 25px;
+    outline: none;
+}
+
+.submitTask {
+    display: flex;
+    width: 10%;
+    border: none;
+    background-color: #CCCCCC;
+    padding: 5px;
+    color: #771100;
+    font-family: fantasy;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    border: none;
+    outline: none;
+    color: #FF9900;
+}
+
+input[type="submit"]:focus {
+    border: none;
+    outline: none;
+}
+
+input[type=checkbox] {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0
+}
+
+input[type=checkbox]:after {
+    padding: 0 0 3px 5px;
+    top: 1px;
+    font-size: 20px;
+    content: "O";
+    color: #771100;
+    display: block;
+}
+
+input[type=checkbox]:checked:after {
+    content: "O";
+    font-size: 10px;
+    padding: 0px 0 3px 5px;
+    margin: 0 0 2px 6px;
+    background-color: #771100;
+    border-radius: 100%;
+}
+
+.navigationMenu {
+    display: flex;
+    flex-direction: column;
+    width: 19%;
+    margin: 0 0 15px 0;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 15px;
+}
+
+.filters {
+    display: flex;
+    border: none;
+    margin: 13px 0;
+    background-color: #771100;
+    border-radius: 25px;
+    padding: 5px 10px 0 10px;
+    color: #FF9900;
+    font-family: fantasy;
+    cursor: pointer;
+    border: 2px solid #771100;
+
+}
+
+.filters:focus {
+    border: 2px solid #FF9900;
+    border-radius: 25px;
+    outline: none;
+}
 
 .theList {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    width: 77%;
+    margin: 0 10px 0 10px;
 }
 
 .listItem {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.delete {
-    width: 3vw;
-    height: 3vh;
-}
-
-.button {
-    border-radius: 20%;
-    width: auto;
-}
-
-li {
-    display: flex;
-    align-items: center;
     list-style: none;
-
+    height: 35px;
+    width: 95%;
     margin: 15px;
+    align-items: center;
+    border: 2px solid #771100;
+    background-color: #FF9900;
+    border-radius: 25px;
+}
+
+.checkBox {
+    display: flex;
+    width: 5%;
+    align-self: center;
+    margin: 1px 8px;
+    cursor: pointer;
+    outline: none;
+
+}
+
+input[type=checkbox] + .task {
+
+}
+
+input[type=checkbox]:checked + .task {
+
 }
 
 .task {
     display: flex;
-    align-items: center;
-    width: 30vw;
-    height: 3vh;
-    background-color: #FF9900;
+    width: 83%;
+    color: #771100;
+    font-family: fantasy;
 }
 
-.checkBox {
-    width: 25px;
-    height: 25px;
+.delete {
+    display: flex;
+    border: none;
+    width: 5%;
+    background-color: #FF9900;
+    padding: 3px;
+    align-self: center;
+    color: #771100;
+    cursor: pointer;
 }
+

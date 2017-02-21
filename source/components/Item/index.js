@@ -4,11 +4,13 @@ export default function Item(props) {
 
 
     return (
+
         <li className="listItem">
             <input
                 type="checkbox"
                 className="checkBox"
                 onClick={props.onCheck.bind(null,props)}
+                onChange={props.isChecked ? "checked" : ""}
             />
             <div
             className="task">

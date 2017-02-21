@@ -5,9 +5,12 @@ import  ReactDOM from 'react-dom';
 
 import App from './components/App/index';
 
+import '../source/index.css';
+
+
 const defaultState = {
     title: 'Todo list',
-    placeholder: "Enter task",
+    placeholder: "   ..enter a task",
 };
 
 ReactDOM.render(

@@ -44,9 +44,5 @@ module.exports = {
             name: 'vendor'
         }),
         new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
-
     ]
 };
-
-
-

@@ -1,15 +1,19 @@
 webpackJsonp([0],{
 
-/***/ 183:
+/***/ 185:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App_index__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__source_index_css__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__source_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__source_index_css__);
+
+
 
 
 
@@ -19,7 +23,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var defaultState = {
     title: 'Todo list',
-    placeholder: "Enter task"
+    placeholder: "   ..enter a task"
 };
 
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_App_index__["a" /* default */], defaultState), document.getElementById('app'));
@@ -30,11 +34,13 @@ __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_classnames__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ListItem_index__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ListItem_index__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DoneItems_index__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UndoneItems_index__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__AllItems_index__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DeletedItems__ = __webpack_require__(84);
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -51,8 +57,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-// import DoneItems from  '../DoneItems/index';
-// import UnDoneItems from '../UnDoneItems/index';
+
 
 
 var App = function (_Component) {
@@ -64,16 +69,21 @@ var App = function (_Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            count: 0,
             items: [],
-            isChecked: false
+            deletedItems: [],
+            fullListItems: [],
+            isChecked: false,
+            deleted: false
 
         };
         _this.inputDidMount = _this.inputDidMount.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.deleteItem = _this.deleteItem.bind(_this);
         _this.handleInputChange = _this.handleInputChange.bind(_this);
-        // this.filterDone = this.filterDone.bind(this);
+        _this.filterDone = _this.filterDone.bind(_this);
+        _this.filterUndone = _this.filterUndone.bind(_this);
+        _this.filterAll = _this.filterAll.bind(_this);
+        _this.filterDeleted = _this.filterDeleted.bind(_this);
 
         return _this;
     }
@@ -88,54 +98,86 @@ var App = function (_Component) {
             });
             e.preventDefault();
         }
-
-        // filterDone({}) {
-        //     const items = this.state.items;
-        //
-        //     for (let index = 0, length = items.length; index < length; index++) {
-        //         const item = items[index];
-        //         if (item.isChecked == false) {
-        //             // console.log(this.state.className);
-        //             classNames('hide',item);
-        //             // item = getClassName()
-        //         }
-        //     }
-        //
-        // }
-
-
     }, {
         key: 'deleteItem',
-        value: function deleteItem(_ref) {
-            var id = _ref.id;
-
+        value: function deleteItem(e) {
             var items = this.state.items;
-
+            var deletedItems = this.state.deletedItems;
+            var target = e.id;
             for (var index = 0, length = items.length; index < length; index++) {
                 var item = items[index];
-                if (item.id == id) {
-                    items.splice(index, 1);
+                var targetIndex = index;
+
+                if (item.id == target) {
+                    console.log(targetIndex);
+                    deletedItems.push(item);
+                    items.splice(targetIndex, 1);
+                }
+                this.setState({ items: items, deletedItems: deletedItems });
+            }
+        }
+    }, {
+        key: 'filterDeleted',
+        value: function filterDeleted() {
+            var deletedItems = this.state.deletedItems;
+            console.log(deletedItems);
+            this.setState({ items: deletedItems });
+        }
+    }, {
+        key: 'filterDone',
+        value: function filterDone() {
+            var isCheckedItems = [];
+            var fullListItems = this.state.fullListItems;
+            for (var index = 0, length = fullListItems.length; index < length; index++) {
+                var item = fullListItems[index];
+                if (item.isChecked === true) {
+                    isCheckedItems.push(item);
                 }
             }
 
-            this.setState({ items: items });
+            this.setState({ items: isCheckedItems });
+        }
+    }, {
+        key: 'filterUndone',
+        value: function filterUndone() {
+            var isUncheckedItems = [];
+            var fullListItems = this.state.fullListItems;
+            // this.setState({isUncheckedItems: []});
+            for (var index = 0, length = fullListItems.length; index < length; index++) {
+                var item = fullListItems[index];
+                if (item.isChecked === false) {
+                    isUncheckedItems.push(item);
+                }
+            }
+
+            this.setState({ items: isUncheckedItems });
+        }
+    }, {
+        key: 'filterAll',
+        value: function filterAll() {
+            var fullListItems = this.state.fullListItems;
+            this.setState({ items: fullListItems });
         }
     }, {
         key: 'handleInputChange',
-        value: function handleInputChange(_ref2) {
-            var id = _ref2.id;
+        value: function handleInputChange(_ref) {
+            var id = _ref.id;
 
             var items = this.state.items;
+            var fullListItems = this.state.fullListItems;
 
-            for (var index = 0, length = items.length; index < length; index++) {
+            for (var index = 0, itemsLength = items.length; index < itemsLength; index++) {
                 var item = items[index];
+                var item2 = fullListItems[index];
                 if (item.id == id) {
                     item.isChecked = !item.isChecked;
-                    console.log(item.isChecked);
+                }
+                if (item2.id == id) {
+                    item.isChecked = !item.isChecked;
                 }
             }
 
-            this.setState({ items: items });
+            this.setState({ items: items, fullListItems: fullListItems });
         }
     }, {
         key: 'inputDidMount',
@@ -150,8 +192,12 @@ var App = function (_Component) {
             var prevStateItems = this.state.items;
 
             if (value !== '') {
-                var newStateItems = [].concat(_toConsumableArray(prevStateItems), [{ name: value, id: Date.now(), isChecked: isChecked }]);
-                this.setState({ items: newStateItems });
+                var newStateItems = [].concat(_toConsumableArray(prevStateItems), [{
+                    name: value,
+                    id: Date.now(),
+                    isChecked: isChecked
+                }]);
+                this.setState({ items: newStateItems, fullListItems: newStateItems });
             }
 
             event.preventDefault();
@@ -167,7 +213,10 @@ var App = function (_Component) {
                 handleSubmit = this.handleSubmit,
                 deleteItem = this.deleteItem,
                 handleInputChange = this.handleInputChange,
-                filterDone = this.filterDone;
+                filterDone = this.filterDone,
+                filterUndone = this.filterUndone,
+                filterAll = this.filterAll,
+                filterDeleted = this.filterDeleted;
             var items = this.state.items;
 
 
@@ -179,22 +228,35 @@ var App = function (_Component) {
                     { className: 'mainForm' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'h1',
-                        { className: 'title' },
+                        { className: 'formTitle' },
                         title
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+                        className: 'inputTask',
                         type: 'text',
                         placeholder: placeholder,
                         ref: inputDidMount
                     }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
                         type: 'submit',
-                        className: 'button',
+                        className: 'submitTask',
                         value: 'Add',
                         onClick: handleSubmit
                     })
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ListItem_index__["a" /* default */], { deleteItem: deleteItem, items: items, checkItem: handleInputChange })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'content',
+                    { className: 'content' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'navigationMenu' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__DoneItems_index__["a" /* default */], { filterDone: filterDone }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__UndoneItems_index__["a" /* default */], { filterUndone: filterUndone }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__AllItems_index__["a" /* default */], { filterAll: filterAll }),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__DeletedItems__["a" /* default */], { filterDeleted: filterDeleted })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__ListItem_index__["a" /* default */], { deleteItem: deleteItem, items: items, checkItem: handleInputChange })
+                )
             );
         }
     }]);
@@ -206,11 +268,86 @@ var App = function (_Component) {
 
 /***/ }),
 
+/***/ 82:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 83:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony export (immutable) */ __webpack_exports__["a"] = AllItems;
+
+
+function AllItems(props) {
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "button",
+        {
+            className: "allItems filters",
+            onClick: props.filterAll.bind(null, props)
+        },
+        "All"
+    );
+}
+
+/***/ }),
+
+/***/ 84:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony export (immutable) */ __webpack_exports__["a"] = DeletedItems;
+
+
+function DeletedItems(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "button",
+        {
+            className: "deletedItems filters",
+            onClick: props.filterDeleted.bind(null, props)
+        },
+        "Deleted"
+    );
+}
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony export (immutable) */ __webpack_exports__["a"] = DoneItems;
+
+
+function DoneItems(props) {
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "button",
+        {
+            className: "doneItems filters",
+            onClick: props.filterDone.bind(null, props)
+        },
+        "Done"
+    );
+}
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony export (immutable) */ __webpack_exports__["a"] = Item;
 
@@ -223,7 +360,8 @@ function Item(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
             type: "checkbox",
             className: "checkBox",
-            onClick: props.onCheck.bind(null, props)
+            onClick: props.onCheck.bind(null, props),
+            onChange: props.isChecked ? "checked" : ""
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
@@ -244,13 +382,13 @@ function Item(props) {
 
 /***/ }),
 
-/***/ 84:
+/***/ 87:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Item_index_js__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Item_index_js__ = __webpack_require__(86);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -287,7 +425,7 @@ var ListItem = function (_Component) {
             var children = [];
             for (var index = 0, length = items.length; index < length; index++) {
                 var item = items[index];
-                children.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Item_index_js__["a" /* default */], _extends({ className: 'visible', key: item.id }, item, { onDelete: deleteItem, onCheck: checkItem })));
+                children.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Item_index_js__["a" /* default */], _extends({ key: item.id }, item, { onDelete: deleteItem, onCheck: checkItem })));
             }
 
             return children;
@@ -296,7 +434,6 @@ var ListItem = function (_Component) {
         key: 'render',
         value: function render() {
             var getItems = this.getItems;
-
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'ul',
@@ -313,61 +450,28 @@ var ListItem = function (_Component) {
 
 /***/ }),
 
-/***/ 86:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 88:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony export (immutable) */ __webpack_exports__["a"] = UnDoneItems;
 
-(function () {
-	'use strict';
 
-	var hasOwn = {}.hasOwnProperty;
+function UnDoneItems(props) {
 
-	function classNames () {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				classes.push(classNames.apply(null, arg));
-			} else if (argType === 'object') {
-				for (var key in arg) {
-					if (hasOwn.call(arg, key) && arg[key]) {
-						classes.push(key);
-					}
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
-			return classNames;
-		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "button",
+        {
+            className: "filters unDoneItems",
+            onClick: props.filterUndone.bind(null, props)
+        },
+        "Undone"
+    );
+}
 
 /***/ })
 
-},[183]);
+},[185]);
 //# sourceMappingURL=main.js.map
